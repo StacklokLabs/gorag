@@ -28,7 +28,7 @@ const testEmbeddingText = "Test embedding text."
 func TestOllamaGenerate(t *testing.T) {
 	t.Parallel()
 	// Mock response from Ollama API
-	mockResponse := Response{
+	mockResponse := OllamaResponse{
 		Model:     "test-model",
 		CreatedAt: time.Now().Format(time.RFC3339),
 		Response:  "This is a test response from Ollama.",

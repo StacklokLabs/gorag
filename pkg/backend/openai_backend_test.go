@@ -33,16 +33,18 @@ func TestGenerate(t *testing.T) {
 		Choices: []struct {
 			Index   int `json:"index"`
 			Message struct {
-				Role    string `json:"role"`
-				Content string `json:"content"`
+				Role      string           `json:"role"`
+				Content   string           `json:"content"`
+				ToolCalls []OpenAIToolCall `json:"tool_calls"`
 			} `json:"message"`
 			FinishReason string `json:"finish_reason"`
 		}{
 			{
 				Index: 0,
 				Message: struct {
-					Role    string `json:"role"`
-					Content string `json:"content"`
+					Role      string           `json:"role"`
+					Content   string           `json:"content"`
+					ToolCalls []OpenAIToolCall `json:"tool_calls"`
 				}{
 					Role:    "assistant",
 					Content: "This is a test response.",
