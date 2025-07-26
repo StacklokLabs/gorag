@@ -17,6 +17,19 @@ CREATE TABLE ollama_embeddings (
     metadata JSONB
 );
 
+CREATE TABLE bedrock_embeddings_1024 (
+    id BIGSERIAL PRIMARY KEY,
+    doc_id TEXT NOT NULL,
+    model TEXT NOT NULL,
+    embedding VECTOR(1024) NOT NULL,
+    metadata JSONB,
+    created_at TIMESTAMPTZ DEFAULT now()
+);
+
+CREATE INDEX bedrock_embeddings_1024_ivf_cos ON bedrock_embeddings_1024
+USING ivfflat (embedding vector_cosine_ops)
+WITH (lists = 100);
+
 -- Index for efficient vector similarity search for OpenAI embeddings
 CREATE INDEX openai_embeddings_idx ON openai_embeddings
 USING ivfflat (embedding vector_cosine_ops)
